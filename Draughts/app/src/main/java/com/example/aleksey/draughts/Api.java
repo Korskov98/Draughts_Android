@@ -11,21 +11,21 @@ public class Api {
 
     public static void move_draught(Field field, int x_draught, int y_draught, int x_place, int y_place) {
         Draughts draught = field.get_draught(x_draught, y_draught);
-        if (check_destruction_around(field) == true){
+        if (check_destruction_around(field)){
             throw new IllegalArgumentException();
         }
         if (field.get_color() == draught.get_color()) {
-            if (draught.check_of_move(x_place, y_place) == false) {
+            if (!draught.check_of_move(x_place, y_place)) {
                 throw new IllegalArgumentException();
             } else {
-                if (field.check_free(x_place, y_place) == false) {
+                if (!field.check_free(x_place, y_place)) {
                     throw new IllegalArgumentException();
                 } else {
                     field.set_null(x_draught, y_draught);
                     draught.set_x(x_place);
                     draught.set_y(y_place);
                     field.set_draught(draught);
-                    if (draught.check_of_type() == true) {
+                    if (draught.check_of_type()) {
                         draught.set_type(true);
                     }
                 }
@@ -39,21 +39,46 @@ public class Api {
     public static void destroy_draught(Field field, int x_selected, int y_selected, int x_destroyed, int y_destroyed) {
         Draughts draught = field.get_draught(x_selected, y_selected);
         if (field.get_color() == draught.get_color()) {
-            if (field.check_destruction(x_selected, y_selected, x_destroyed, y_destroyed) == false) {
+            if (!field.check_destruction(x_selected, y_selected, x_destroyed, y_destroyed)) {
                 throw new IllegalArgumentException();
             } else {
-                field.set_null(x_selected, y_selected);
-                field.set_null(x_destroyed, y_destroyed);
-                draught.set_x(x_selected + 2 * (x_destroyed - x_selected));
-                draught.set_y(y_selected + 2 * (y_destroyed - y_selected));
-                field.set_draught(draught);
-                draught.check_of_type();
-                if (draught.check_of_type() == true) {
-                    draught.set_type(true);
+                if (!draught.get_type()) {
+                    field.set_null(x_selected, y_selected);
+                    field.set_null(x_destroyed, y_destroyed);
+                    draught.set_x(x_selected + 2 * (x_destroyed - x_selected));
+                    draught.set_y(y_selected + 2 * (y_destroyed - y_selected));
+                    field.set_draught(draught);
+                    draught.check_of_type();
+                    if (draught.check_of_type()) {
+                        draught.set_type(true);
+                    }
+                }else {
+                    field.set_null(x_selected, y_selected);
+                    field.set_null(x_destroyed, y_destroyed);
+                    if ((x_destroyed - x_selected < 0) && (y_destroyed - y_selected < 0)){
+                        draught.set_x(x_destroyed - 1);
+                        draught.set_y(y_destroyed - 1);
+                        field.set_draught(draught);
+                    }
+                    if ((x_destroyed - x_selected < 0) && (y_destroyed - y_selected > 0)){
+                        draught.set_x(x_destroyed - 1);
+                        draught.set_y(y_destroyed + 1);
+                        field.set_draught(draught);
+                    }
+                    if ((x_destroyed - x_selected > 0) && (y_destroyed - y_selected < 0)){
+                        draught.set_x(x_destroyed + 1);
+                        draught.set_y(y_destroyed - 1);
+                        field.set_draught(draught);
+                    }
+                    if ((x_destroyed - x_selected > 0) && (y_destroyed - y_selected > 0)){
+                        draught.set_x(x_destroyed + 1);
+                        draught.set_y(y_destroyed + 1);
+                        field.set_draught(draught);
+                    }
                 }
             }
         }
-        if (check_destruction_around(field) == false) {
+        if (!check_destruction_around(field)) {
             field.set_color(!field.get_color());
         }
     }
@@ -71,23 +96,23 @@ public class Api {
                 if (draught == null){
                     wrt.append("nl ");
                 }else {
-                    if ((draught.get_color() == true) && (draught.get_type() == false)) {
+                    if ((draught.get_color()) && (!draught.get_type())) {
                         wrt.append("tf ");
                     }
-                    if ((draught.get_color() == true) && (draught.get_type() == true)) {
+                    if ((draught.get_color()) && (draught.get_type())) {
                         wrt.append("tt ");
                     }
-                    if ((draught.get_color() == false) && (draught.get_type() == false)) {
+                    if ((!draught.get_color()) && (!draught.get_type())) {
                         wrt.append("ff ");
                     }
-                    if ((draught.get_color() == false) && (draught.get_type() == true)) {
+                    if ((!draught.get_color()) && (draught.get_type())) {
                         wrt.write("ft ");
                     }
                 }
             }
             wrt.append(lineSeparator);
         }
-        if (field.get_color() == true){
+        if (field.get_color()){
             wrt.append("tr");
         }else {
             wrt.append("fl");
@@ -135,14 +160,14 @@ public class Api {
             for (int j = 0; j <= 7; ++j){
                 Draughts draught = field.get_draught(i,j);
                 if (draught != null) {
-                    if (draught.get_color() == true) {
+                    if (draught.get_color()) {
                         ++statistics[0];
-                        if (draught.get_type() == true) {
+                        if (draught.get_type()) {
                             ++statistics[1];
                         }
                     }else {
                         ++statistics[3];
-                        if (draught.get_type() == true) {
+                        if (draught.get_type()) {
                             ++statistics[4];
                         }
                     }
@@ -159,19 +184,19 @@ public class Api {
             for (int j = 0; j <= 7; ++j) {
                 if ((field.get_draught(i,j) != null) && (field.get_draught(i,j).get_color() == field.get_color())) {
                     if ((i + 1 <= 7) && (i + 1 >= 0) && (j + 1 <= 7) && (j + 1 >= 0) &&
-                            (field.check_destruction(i, j, i + 1, j + 1) == true)) {
+                            (field.check_destruction(i, j, i + 1, j + 1))) {
                         return true;
                     }
                     if ((i - 1 <= 7) && (i - 1 >= 0) && (j + 1 <= 7) && (j + 1 >= 0) &&
-                            (field.check_destruction(i, j, i - 1, j + 1) == true)) {
+                            (field.check_destruction(i, j, i - 1, j + 1))) {
                         return true;
                     }
                     if ((i + 1 <= 7) && (i + 1 >= 0) && (j - 1 <= 7) && (j - 1 >= 0) &&
-                            (field.check_destruction(i, j, i + 1, j - 1) == true)) {
+                            (field.check_destruction(i, j, i + 1, j - 1))) {
                         return true;
                     }
                     if ((i - 1 <= 7) && (i - 1 >= 0) && (j - 1 <= 7) && (j - 1 >= 0) &&
-                            (field.check_destruction(i, j, i - 1, j - 1) == true)) {
+                            (field.check_destruction(i, j, i - 1, j - 1))) {
                         return true;
                     }
                 }

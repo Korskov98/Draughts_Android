@@ -16,4 +16,10 @@
             простые. Простая шашка может превратиться в дамку, если она достигнет последнего противоположного горизонтального
             ряда доски (дамочного поля). Простые шашки ходят только вперёд на следующее поле. Дамки могут ходить и вперёд и назад.</string>
     <string name="wrong_move_text">Вы не можете сделать данный ход.</string>
+    <string name="empty_cell_text">Вы выбрали пустую клетку.</string>
+    <string name="wrong_color_text">Вы выбрали шашку неправильного цвета.</string>
+    <string name="back_button">Назад         .</string>
+    <string name="save_button">Сохранить игру.</string>
+    <string name="white_move">Ход белого игрока.</string>
+    <string name="black_move">Ход чёрного игрока.</string>
 </resources>

@@ -53,8 +53,8 @@ public class Field {
     }
 
     public boolean check_destruction(int x_selected, int y_selected, int x_destroyed, int y_destroyed){
-        if (draughts[x_selected][y_selected].get_type() == false) {
-            if (draughts[x_selected][y_selected].get_color() == false) {
+        if (!draughts[x_selected][y_selected].get_type()) {
+            if (!draughts[x_selected][y_selected].get_color()) {
                 if ((draughts[x_destroyed][y_destroyed] != null) && (Math.abs(draughts[x_selected][y_selected].get_x() - draughts[x_destroyed][y_destroyed].get_x()) == 1) &&
                         (Math.abs(draughts[x_selected][y_selected].get_y() - draughts[x_destroyed][y_destroyed].get_y()) == 1) &&
                         (draughts[x_destroyed][y_destroyed].get_color() != draughts[x_selected][y_selected].get_color()) &&
@@ -83,7 +83,7 @@ public class Field {
             }
         }else {
             if ((x_destroyed - x_selected > 0) && (y_destroyed - y_selected > 0)) {
-                if ((draughts[x_selected][y_selected].check_of_move(x_destroyed, y_destroyed) == true)
+                if ((draughts[x_selected][y_selected].check_of_move(x_destroyed, y_destroyed))
                         && (draughts[x_destroyed][y_destroyed] != null)
                         && (draughts[x_destroyed][y_destroyed].get_color() != draughts[x_selected][y_selected].get_color())
                         && check_free(x_destroyed + 1, y_destroyed + 1) &&
@@ -97,7 +97,7 @@ public class Field {
                 }
             }
             if ((x_destroyed - x_selected > 0) && (y_destroyed - y_selected < 0)) {
-                if ((draughts[x_selected][y_selected].check_of_move(x_destroyed, y_destroyed) == true)
+                if ((draughts[x_selected][y_selected].check_of_move(x_destroyed, y_destroyed))
                         && (draughts[x_destroyed][y_destroyed] != null)
                         && (draughts[x_destroyed][y_destroyed].get_color() != draughts[x_selected][y_selected].get_color())
                         && check_free(x_destroyed + 1, y_destroyed - 1) && (x_destroyed + 1 >= 0)
@@ -110,7 +110,7 @@ public class Field {
                 }
             }
             if ((x_destroyed - x_selected < 0) && (y_destroyed - y_selected > 0)) {
-                if ((draughts[x_selected][y_selected].check_of_move(x_destroyed, y_destroyed) == true)
+                if ((draughts[x_selected][y_selected].check_of_move(x_destroyed, y_destroyed))
                         && (draughts[x_destroyed][y_destroyed] != null)
                         && (draughts[x_destroyed][y_destroyed].get_color() != draughts[x_selected][y_selected].get_color())
                         && check_free(x_destroyed - 1, y_destroyed + 1)
@@ -124,7 +124,7 @@ public class Field {
                 }
             }
             if ((x_destroyed - x_selected < 0) && (y_destroyed - y_selected < 0)) {
-                if ((draughts[x_selected][y_selected].check_of_move(x_destroyed, y_destroyed) == true)
+                if ((draughts[x_selected][y_selected].check_of_move(x_destroyed, y_destroyed))
                         && (draughts[x_destroyed][y_destroyed] != null)
                         && (draughts[x_destroyed][y_destroyed].get_color() != draughts[x_selected][y_selected].get_color())
                         && check_free(x_destroyed - 1, y_destroyed - 1)
