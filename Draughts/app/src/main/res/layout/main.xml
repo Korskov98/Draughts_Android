@@ -24,12 +24,6 @@
             android:text="@string/new_game_button"
             android:background="@drawable/myb_states"/>
         <Button
-            android:id="@+id/load_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/load_button"
-            android:background="@drawable/myb_states"/>
-        <Button
             android:id="@+id/about_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

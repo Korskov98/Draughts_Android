@@ -2,7 +2,7 @@
     <string name="app_name">Шашки</string>
     <string name="main_title">Шашки</string>
     <string name="new_game_button">Новая игра</string>
-    <string name="load_button">Загрузить игру</string>
+    <string name="settings_button">Настройки</string>
     <string name="exit_button">Выход</string>
     <string name="about_button">Правила</string>
     <string name="about_title">Правила игры шашки</string>

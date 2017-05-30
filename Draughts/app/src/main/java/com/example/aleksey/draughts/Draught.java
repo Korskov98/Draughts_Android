@@ -13,8 +13,6 @@ public class Draught extends Activity implements View.OnClickListener {
         setContentView(R.layout.main);
         View newButton = findViewById(R.id.new_button);
         newButton.setOnClickListener(this);
-        View loadButton = findViewById(R.id.load_button);
-        loadButton.setOnClickListener(this);
         View aboutButton = findViewById(R.id.about_button);
         aboutButton.setOnClickListener(this);
         View exitButton = findViewById(R.id.exit_button);

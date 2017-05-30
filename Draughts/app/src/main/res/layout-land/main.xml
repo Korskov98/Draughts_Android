@@ -31,11 +31,6 @@
                     android:id="@+id/new_button"
                     android:text="@string/new_game_button" />
                 <Button
-                    android:id="@+id/load_button"
-                    android:text="@string/load_button" />
-            </TableRow>
-            <TableRow>
-                <Button
                     android:id="@+id/about_button"
                     android:text="@string/about_button" />
                 <Button

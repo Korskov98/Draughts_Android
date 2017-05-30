@@ -94,6 +94,13 @@ public class DraughtView extends View {
         }else {
             canvas.drawText("Ход чёрного игрока", 0, 1090, font);
         }
+        int[] statistics = Api.get_statistics(field);
+        canvas.drawText("Ост. белых шашек: " + statistics[0], 0, 1150, font);
+        canvas.drawText("Белых дамок: " + statistics[1], 0, 1210, font);
+        canvas.drawText("Белых шашек уничт.: " + statistics[2], 0, 1270, font);
+        canvas.drawText("Ост. чёрных шашек: " + statistics[3], 0, 1330, font);
+        canvas.drawText("Чёрных дамок: " + statistics[4], 0, 1390, font);
+        canvas.drawText("Чёрных шашек уничт.: " + statistics[5], 0, 1450, font);
     }
 
     @Override
