@@ -98,6 +98,7 @@ postbreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\color{red}\hookrightarrow\space}
 
 
 \subsection{Диаграмма прецедентов использования}
+На основе разработанной концепции была составлена UML диаграмма прецедентов использования (рис.\ref{pic:Diagram1}).
 
 \begin{figure}[H]
 	\begin{center}
@@ -108,18 +109,20 @@ postbreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\color{red}\hookrightarrow\space}
 \end{figure}
 
 \section{Проектрование приложения, реализующего игру Шашки}
+На основе анализа концепции и выделенных прецедентов использования было принято решение выделить два основных компонента, которые будут входить в состав продукта:
 
-\subsection{Библиотека}
-При написании проекта, была создана библиотека. В ней находятся все необходимые классы для создания и работы игры. Один из классов (api) создан для предоставления всех действий над моделью.
+\begin{enumerate}
+		\item Библиотека
+		
+		При написании проекта, была создана библиотека. В ней находятся все необходимые классы для создания и работы игры. Один из классов (api) создан для предоставления всех действий над моделью.
+		
+		\item Графическое приложение 
+		
+		Графически визуализирует игровую модель, предоставляет пользователю графический интерфейс для взаимодействия с ней и выполнения остальный действий предусмотренных в реализации библиотеки. 
+\end{enumerate}
 
-\noindent В API выделены следующие методы: 
-\begin{itemize}
-\item move\_draught - метод, передвигающий шашку.
-\item destroy\_draught - метод, уничтожающий шашку противника.
-\item get\_statistics - метод, анализирующий поле и выдающий статистику.
-\item check\_destruction\_around - метод, проверяющий может ли шашка кого-нибудь уничтожить вокруг себя.
-\end{itemize}
-
+\subsection{Выводы}
+Таким образом, была разработана концепция приложения, что позволило определить внешний вид продукта и выделить его основные компоненты.
 
 \section{Реализация игры Шашки}
 \subsection{Версии программ}
@@ -147,7 +150,7 @@ postbreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\color{red}\hookrightarrow\space}
 
 \begin{figure}[H]
 	\begin{center}
-		\includegraphics[scale=0.5]{gui}
+		\includegraphics[scale=0.5]{menu}
 		\caption{Главное меню графического приложения} 
 		\label{pic:menu} % название для ссылок внутри кода
 	\end{center}
@@ -157,7 +160,7 @@ postbreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\color{red}\hookrightarrow\space}
 
 \begin{figure}[H]
 	\begin{center}
-		\includegraphics[scale=0.5]{gui2}
+		\includegraphics[scale=0.5]{field}
 		\caption{Представление поля в графическом приложении} 
 		\label{pic:field} % название для ссылок внутри кода
 	\end{center}
@@ -165,49 +168,62 @@ postbreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\color{red}\hookrightarrow\space}
 
 На рис \ref{pic:field} – окно с полем. В центре расположено поле с шашками, внизу текущие данные об игре для каждой из сторон и информация о том, чей ход в данный момент.
 
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[scale=0.5]{about}
+		\caption{Окно с правилами игры Шашки} 
+		\label{pic:about} % название для ссылок внутри кода
+	\end{center}
+\end{figure}
+
+На рис \ref{pic:about} – окно с правилами по которым происходит игра Шашки.
+
+
 \section{Процесс обеспечения качества и тестирование}
 \subsection{Тестирование}
 Приложение тестировалось вручную. После добавления каждой новой функции в приложение, она была протестирована на работоспособность. После теста при возникновении ошибок они все были исправлены.
+
+\subsection{Демонстрации}
+Во время создания приложения была проведена 1 демонстрация. По результату которой не было найдено серьёзных замечаний и недоработок к проекту.
 
 \section{Вывод}
 По окончании семестра автор проекта научился писать программы на языке Java для операционной системы Android, делать графический интерфейс с помощью Swing, а также получил опыт работы с большими проектами на Java, содержащими много классов и имеющих как консольное приложение, так и графическое.
 
 \section{Приложение 1. Листинги кода}
-\subsection{Консольное приложение}
-\lstinputlisting[]
-{../Draughts/src/main/java/ConsoleApp/Console_Ui.java}
-\newpage
-
-\subsection{Графическое приложение}
-\lstinputlisting[]
-{../Draughts/src/main/java/Graphic_Ui/Frame.java}
-\newpage
-
-\lstinputlisting[]
-{../Draughts/src/main/java/Graphic_Ui/Board.java}
-\newpage
-
-\lstinputlisting[]
-{../Draughts/src/main/java/Graphic_Ui/BorderPanel.java}
-\newpage
-
 \subsection{Библиотека}
 
 \lstinputlisting[]
-{../Draughts/src/main/java/Core/Api.java}
+{../Draughts/app/src/main/java/com/example/aleksey/draughts/Draughts.java}
 \newpage
 
 \lstinputlisting[]
-{../Draughts/src/main/java/Core/Draught.java}
+{../Draughts/app/src/main/java/com/example/aleksey/draughts/Field.java}
 \newpage
 
 \lstinputlisting[]
-{../Draughts/src/main/java/Core/Field.java}
+{../Draughts/app/src/main/java/com/example/aleksey/draughts/Api.java}
 \newpage
 
-\subsection{Тесты}
+\subsection{Графическое приложение}
 
 \lstinputlisting[]
-{../Draughts/src/test/java/Test_Draughts.java}
+{../Draughts/app/src/main/java/com/example/aleksey/draughts/About.java}
 \newpage
+
+\lstinputlisting[]
+{../Draughts/app/src/main/java/com/example/aleksey/draughts/Draught.java}
+\newpage
+
+\lstinputlisting[]
+{../Draughts/app/src/main/java/com/example/aleksey/draughts/DraughtView.java}
+\newpage
+
+\lstinputlisting[]
+{../Draughts/app/src/main/java/com/example/aleksey/draughts/Game.java}
+\newpage
+
+\lstinputlisting[]
+{../Draughts/app/src/main/java/com/example/aleksey/draughts/Music.java}
+\newpage
+
 \end{document}
